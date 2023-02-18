@@ -37,12 +37,33 @@ document.addEventListener('keydown', function (e) {
 
 // Cookies message btn
 const message = document.createElement('div');
-message.classList.add('cookie-messsage');
+message.classList.add('cookie-message');
 message.innerHTML =
-  'We use cookies fro improved functionality and analyctis. <button class="btn btn--close-cookie">Got it!</button>';
+  'We use cookies fro improved functionality and analyctis.       <button class="btn btn--close-cookie">Got it!</button>';
 
 header.append(message); // last child
-
 document
   .querySelector('.btn--close-cookie')
   .addEventListener('click', () => message.remove());
+
+// Styles for cookies
+message.style.backgroundColor = '#37383d';
+message.style.width = '120%';
+message.style.height =
+  Number.parseFloat(getComputedStyle(message).height, 10) + 30 + 'px'; // getComputedStyle will give us css atributes value
+
+// Smooth scrolling
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
+
+btnScrollTo.addEventListener('click', e => {
+  const s1coords = section1.getBoundingClientRect();
+  // Modern browsers
+  section1.scrollIntoView({ behavior: 'smooth' });
+  // Older browsers
+  // window.scrollTo({
+  //   left: s1coords.left + window.pageXOffset,
+  //   top: s1coords.top + window.pageYOffset,
+  //   behavior: 'smooth',
+  // });
+});
