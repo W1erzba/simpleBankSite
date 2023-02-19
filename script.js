@@ -7,12 +7,16 @@ const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
 
+///////////////////////////////////////
 // Elements
 const header = document.querySelector('.header');
 const allSections = document.querySelectorAll('.section');
 const allButtons = document.getElementsByTagName('button');
 
+///////////////////////////////////////
 // Functions for eventListeners
 const openModal = function (e) {
   e.preventDefault();
@@ -35,6 +39,26 @@ document.addEventListener('keydown', function (e) {
   }
 });
 
+///////////////////////////////////////
+// Smooth scrolling
+
+btnScrollTo.addEventListener('click', e => {
+  const s1coords = section1.getBoundingClientRect();
+  // *works in modern browsers
+  section1.scrollIntoView({ behavior: 'smooth' });
+});
+
+///////////////////////////////////////
+// Page Navigation
+document.querySelectorAll('.nav__link').forEach(el =>
+  el.addEventListener('click', function (e) {
+    e.preventDefault();
+    const id = this.getAttribute('href');
+    document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+  })
+);
+
+///////////////////////////////////////
 // Cookies message btn
 const message = document.createElement('div');
 message.classList.add('cookie-message');
@@ -52,18 +76,4 @@ message.style.width = '120%';
 message.style.height =
   Number.parseFloat(getComputedStyle(message).height, 10) + 30 + 'px'; // getComputedStyle will give us css atributes value
 
-// Smooth scrolling
-const btnScrollTo = document.querySelector('.btn--scroll-to');
-const section1 = document.querySelector('#section--1');
-
-btnScrollTo.addEventListener('click', e => {
-  const s1coords = section1.getBoundingClientRect();
-  // Modern browsers
-  section1.scrollIntoView({ behavior: 'smooth' });
-  // Older browsers
-  // window.scrollTo({
-  //   left: s1coords.left + window.pageXOffset,
-  //   top: s1coords.top + window.pageYOffset,
-  //   behavior: 'smooth',
-  // });
-});
+// Implementing page navigation
