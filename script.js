@@ -1,8 +1,9 @@
 'use strict';
 
 ///////////////////////////////////////
-//////   Modal window   ///////////////
+// Bankistwebsite project
 ///////////////////////////////////////
+
 const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
@@ -18,7 +19,6 @@ const allButtons = document.getElementsByTagName('button');
 const nav = document.querySelector('.nav');
 
 ///////////////////////////////////////
-// Functions for eventListeners
 const openModal = function (e) {
   e.preventDefault();
   modal.classList.remove('hidden');
@@ -42,10 +42,9 @@ document.addEventListener('keydown', function (e) {
 
 ///////////////////////////////////////
 // Smooth scrolling
-
 btnScrollTo.addEventListener('click', e => {
   const s1coords = section1.getBoundingClientRect();
-  // *works in modern browsers
+  // *works only in modern browsers
   section1.scrollIntoView({ behavior: 'smooth' });
 });
 
@@ -70,13 +69,6 @@ header.append(message); // last child
 document
   .querySelector('.btn--close-cookie')
   .addEventListener('click', () => message.remove());
-
-///////////////////////////////////////
-// Styles for cookies
-message.style.backgroundColor = '#37383d';
-message.style.width = '120%';
-message.style.height =
-  Number.parseFloat(getComputedStyle(message).height, 10) + 30 + 'px'; // getComputedStyle will give us css atributes value
 
 ////////////////////////////////////
 // Tabbed commponent
@@ -189,7 +181,6 @@ const slider = function () {
 
   ///////////////////////////////////
   // Functions
-
   const createDots = slide => {
     slides.forEach((_, i) =>
       dotContainer.insertAdjacentHTML(
